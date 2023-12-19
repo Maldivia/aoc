@@ -51,11 +51,12 @@ public class Day19 extends Challenge {
       }
       else if (!rule.destination.equals("R")) {
         accept.add(rule);
-        result += traverseRoutes(workflows, workflows.get(rule.destination), new ArrayList<>(accept), new ArrayList<>(reject));
+        result += traverseRoutes(workflows, workflows.get(rule.destination), accept, reject);
         accept.removeLast();
       }
       reject.add(rule);
     }
+    reject.subList(reject.size() - flow.rules().size(), reject.size()).clear();
     return result;
   }
 
